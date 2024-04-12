@@ -1,0 +1,41 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "inventory";
+option java_outer_classname = "inventoryImpl";
+package inventory;
+
+service InventoryService {
+  rpc GetProductQuantity (ProductQuantityRequest) returns (stream ProductQuantityResponse) {}
+  rpc RestockProduct (stream RestockRequest) returns (RestockResponse) {}
+  rpc MonitorProductQuantity (stream ProductQuantityMonitorRequest) returns (stream ProductQuantityMonitorResponse) {}
+}
+
+message ProductQuantityRequest {
+  string productNo = 1;
+}
+
+message ProductQuantityResponse {
+  string date = 1;
+  string productNo = 2;
+  int32 quantity = 3;
+}
+
+message RestockRequest {
+  string productNo = 1;
+  int32 quantity = 2;
+}
+
+message RestockResponse {
+  string status = 1;
+}
+
+message ProductQuantityMonitorRequest {
+  string productNo = 1;
+}
+
+message ProductQuantityMonitorResponse {
+  string productNo = 1;
+  string date = 2;
+  int32 quantity = 3;
+  string status = 4;
+}

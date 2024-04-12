@@ -1,0 +1,30 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "expiry";
+option java_outer_classname = "expiryImpl";
+package expiry;
+
+service ExpiryService {
+  rpc GetProductExpiry (ProductExpiryRequest) returns (ProductExpiryResponse) {}
+  rpc MonitorProductExpiry (stream ProductExpiryMonitorRequest) returns (stream ProductExpiryMonitorResponse) {}
+}
+
+message ProductExpiryRequest {
+  string productType = 1;
+}
+
+message ProductExpiryResponse {
+  string productType = 1;
+  string bestBefore = 2;
+}
+
+message ProductExpiryMonitorRequest {
+  string productType = 1;
+}
+
+message ProductExpiryMonitorResponse {
+  string productType = 1;
+  string bestBefore = 2;
+  string date = 3;
+  string status = 4;
+}
