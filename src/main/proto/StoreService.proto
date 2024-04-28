@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package com.ncirl.streaming;
+
+option java_multiple_files = true;
+option java_package = "com.ncirl.streaming.storeservice";
+option java_outer_classname = "StoreServiceProto";
+
+service StoreService {
+  // Gets an inventory list of an item
+  rpc getProductsInfo(ProductInfo) returns (ProductInfos);
+  // Get the full inventory list
+  rpc getAllProductsInfo(ProductInfo) returns (stream ProductInfo);
+  // according to productNo to Change inventory count
+  rpc updateProductInfo(ProductInfo) returns (ProductInfos);
+
+  // Batch upload modified inventory
+  rpc upload(stream ProductInfo) returns (ProductInfos);
+}
+
+
+message ProductInfo {
+  string productNo=1;
+  int32 count=2;
+}
+
+message ProductInfos {
+  repeated ProductInfo products=1;
+}
+

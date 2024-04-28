@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package com.ncirl.streaming;
+
+option java_multiple_files = true;
+option java_package = "com.ncirl.streaming.humidityservice";
+option java_outer_classname = "HumidityServiceProto";
+
+// Humidity
+service HumidityService {
+
+  // Get real-time temperature
+  rpc getRealHumidity(HumidityInfo) returns (stream HumidityInfo);
+
+}
+
+message HumidityInfo {
+  string time=1;
+  string humidity=2;
+}
+
+
+

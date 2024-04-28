@@ -1,0 +1,32 @@
+# 生成代码 按照依赖
+mvn clean install
+
+
+
+
+
+
+# https://blog.csdn.net/CHL123456789/article/details/101011431
+# https://developer.hashicorp.com/consul/install 下载consul
+# 启动consul
+consul agent -dev
+
+# 查看注册的服务
+http://localhost:8500/ui/dc1/services
+
+
+
+# 功能介绍:
+库存服务:
+(1) 根据productNo查询某个产品的库存. 单一请求
+(2) 查询全部产品的库存.   单一请求
+(3) 导出全部库存为文件. 服务端流
+(4) 修改某个prodcutNo的库存 . 单一请求
+(5) 上传文件批量修改库存. 客户端流
+
+
+温度监控服务:
+(1) 服务端实时监控仓库温度每秒一推,推送给客户端,客户存储数据; 服务端流
+
+湿度监控服务:
+(2)服务端实时监控仓库湿度每秒一推,推送给客户端,客户存储数据; 服务端流

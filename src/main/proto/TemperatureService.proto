@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package com.ncirl.streaming;
+
+option java_multiple_files = true;
+option java_package = "com.ncirl.streaming.temperatureservice";
+option java_outer_classname = "TemperatureServiceProto";
+
+// Temperature
+service TemperatureService {
+
+  // Get real-time temperature
+  rpc getRealTemperature(TemperatureInfo) returns (stream TemperatureInfo);
+
+}
+
+message TemperatureInfo {
+  string time=1;
+  string temp=2;
+}
+
+
